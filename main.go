@@ -4,7 +4,7 @@ import (
 	"log"
 	"os"
 
-	"neodb/src/cli"
+	"neodb/cli"
 )
 
 func main() {
