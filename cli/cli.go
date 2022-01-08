@@ -49,6 +49,8 @@ func CliConfig() *cli.App {
 			},
 		},
 		Action: func(_ *cli.Context) error {
+			//TODO add auth info
+			fmt.Println("Start in debug mode ...")
 			fmt.Println("WelCome To NeoDB, Start Shell")
 			ShellLoop()
 			return nil
