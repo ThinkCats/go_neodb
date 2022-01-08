@@ -1,10 +1,26 @@
 package cli
 
 import (
+	"bufio"
 	"fmt"
+	"os"
+	"strings"
 
 	"github.com/urfave/cli/v2"
 )
+
+func ShellLoop() {
+	reader := bufio.NewReader(os.Stdin)
+	for {
+		fmt.Print("NeoDB -> ")
+		input, err := reader.ReadString('\n')
+		if err != nil {
+			fmt.Fprintln(os.Stderr, err)
+		}
+		//handle input
+		fmt.Println("Hello,Input:" + strings.TrimSuffix(input, "\n"))
+	}
+}
 
 func CliConfig() *cli.App {
 	app := &cli.App{
@@ -33,7 +49,8 @@ func CliConfig() *cli.App {
 			},
 		},
 		Action: func(_ *cli.Context) error {
-			fmt.Println("Hello NeoDB")
+			fmt.Println("WelCome To NeoDB, Start Shell")
+			ShellLoop()
 			return nil
 		},
 	}
