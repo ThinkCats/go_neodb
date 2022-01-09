@@ -3,6 +3,7 @@ package cli
 import (
 	"bufio"
 	"fmt"
+	"neodb/parser"
 	"os"
 	"strings"
 
@@ -18,7 +19,17 @@ func ShellLoop() {
 			fmt.Fprintln(os.Stderr, err)
 		}
 		//handle input
-		fmt.Println("Hello,Input:" + strings.TrimSuffix(input, "\n"))
+		inputStr := strings.TrimSuffix(input, "\n")
+		fmt.Println("Hello,Input:" + inputStr)
+
+		sqlNode, err := parser.ParseNode(inputStr)
+		if err != nil {
+			fmt.Println("SQL Error: ", inputStr)
+		} else {
+			tableName := parser.ParseTable(sqlNode)
+			fmt.Println("table name:", tableName)
+		}
+
 	}
 }
 

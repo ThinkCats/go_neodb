@@ -1,6 +1,7 @@
 package main
 
 import (
+	"fmt"
 	"log"
 	"os"
 
@@ -8,6 +9,8 @@ import (
 )
 
 func main() {
+
+	fmt.Printf("")
 
 	app := cli.CliConfig()
 	err := app.Run(os.Args)
