@@ -1,15 +1,19 @@
 package parser
 
 import (
+	"fmt"
+
 	"github.com/pingcap/parser"
 	"github.com/pingcap/parser/ast"
+	_ "github.com/pingcap/tidb/types/parser_driver"
 )
 
-func ParseSQL(sql string) (*ast.StmtNode, error) {
+func ParseNode(sql string) (*ast.StmtNode, error) {
 	p := parser.New()
-	stmsNode, err := p.Parse(sql, "", "")
+	stmsNode, _, err := p.Parse(sql, "", "")
+	fmt.Printf("All Node = %+v\n", stmsNode)
 	if err != nil {
 		return nil, err
 	}
-	return &stmsNode, nil
+	return &stmsNode[0], nil
 }
