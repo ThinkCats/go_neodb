@@ -8,9 +8,9 @@ import (
 
 func ParseNode(sql string) (*ast.StmtNode, error) {
 	p := parser.New()
-	stmsNode, _, err := p.Parse(sql, "", "")
+	stmsNode, err := p.ParseOneStmt(sql, "", "")
 	if err != nil {
 		return nil, err
 	}
-	return &stmsNode[0], nil
+	return &stmsNode, nil
 }

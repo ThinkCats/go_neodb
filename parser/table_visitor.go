@@ -2,7 +2,18 @@ package parser
 
 import "github.com/pingcap/parser/ast"
 
+type SqlMode int
+
+const (
+	SELECT SqlMode = iota
+	INSERT
+	UPDATE
+	DELETE
+	ALTER
+)
+
 type SqlNode struct {
+	sqlMode    SqlMode
 	colNames   []string
 	tableNames []string
 }
