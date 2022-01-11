@@ -13,3 +13,14 @@ func TestParser(t *testing.T) {
 	}
 	fmt.Printf("result = %v\n", *result)
 }
+
+func TestExtra(t *testing.T) {
+	createDb := "create database hello"
+	r, _ := ParseNode(createDb)
+	fmt.Printf("column result = %v\n", r)
+
+	sql := "select a,b,c from xxx"
+	result, _ := ParseNode(sql)
+	fmt.Printf("column result = %v\n", result)
+
+}
